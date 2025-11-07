@@ -22,7 +22,7 @@ languages compare and brush up on both.
 | 13| x|x |
 | 14| x|x |
 | 16| x|x |
-| 17|  |x |
+| 17| x|x |
 | 19| x|  |
 | 20| x|x |
 | 21| x|  |
