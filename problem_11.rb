@@ -1,3 +1,7 @@
+=begin
+Calculate largest product of 4 numbers in a line (including diagonals) in a 20*20 provided grid of numbers.
+TODO would be extending to a product of n numbers in a m*m provided grid?
+=end
 class ProductGrid
 
   private
