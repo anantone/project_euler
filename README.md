@@ -1,9 +1,11 @@
 # PROJECT EULER RUBY PYTHON
 
-These are my solutions to the puzzles on [projecteuler.net](https://projecteuler.net/progress)
+These are my solutions to the puzzles on [projecteuler.net](https://projecteuler.net/progress) (WIP... for the foreseeable future!)
 
 The aim is to solve each puzzle in both Ruby and Python, to see how the
 languages compare and brush up on both.
+
+Happy to discuss if anyone feels so inclined.
 
 |Problem|Ruby|Python|
 |--|--|--|
