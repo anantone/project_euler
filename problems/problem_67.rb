@@ -1,4 +1,4 @@
-GRID = 'triangle_pb_18.txt'
+GRID = '0067_triangle.txt'
 
 file_content = File.open(GRID)
 arrays = file_content.read.split("\n").map { |string| string.split }
