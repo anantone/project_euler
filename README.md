@@ -29,7 +29,7 @@ Happy to discuss if anyone feels so inclined.
 | 20| x|x |
 | 21| x|  |
 | 22| x|x |
-| 24| x   |
+| 24| x x |
 | 25| x|x |
 | 30| x|  |
 | 32| x|  |
