@@ -35,5 +35,6 @@ Happy to discuss solutions if anyone feels so inclined.
 | 30| x|  |
 | 32| x|  |
 | 34| x|x |
+| 40| x|  |
 | 41| x|  |
 | 67| x|x |
