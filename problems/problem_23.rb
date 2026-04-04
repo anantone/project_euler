@@ -1,67 +1,61 @@
 class AbundantNumbers
-
-  private
-
-  attr_writer :upper_limit
-
   def initialize(upper_limit)
-    self.upper_limit = upper_limit
+    @upper_limit = upper_limit
   end
 
-  def is_abundant?(number)
-    divisors(number).sum > number
+  def abundant?(number)
+    sum_of_divisors(number) > number
   end
 
-  def divisors(number)
-    (1..number/2).each_with_object([]) do |candidate, divisors|
-      divisors.push(candidate) if (number % candidate).zero?
+  def sum_of_divisors(number)
+    return 0 if number <= 1
+
+    sum = 1 # 1 is always a divisor
+    sqrt = Math.sqrt(number).to_i
+
+    (2..sqrt).each do |i|
+      if (number % i).zero?
+        sum += i
+        sum += number / i unless i * i == number
+      end
     end
-  end
 
-  public
+    sum
+  end
 
   attr_reader :upper_limit
 
   def abundant_numbers
-    (1..upper_limit).to_a.select do |number|
-      is_abundant?(number)
-    end
+    (1..@upper_limit).select { |number| abundant?(number) }
   end
-
 end
 
-class NonAbundantSums < AbundantNumbers
-
-  private
-
-  attr_accessor :maximum
-  attr_writer :non_abundant_sums
+class NonAbundantSums
+  attr_reader :maximum, :non_abundant_sums
 
   def initialize(maximum)
-    self.maximum = maximum
-    self.non_abundant_sums = (1..maximum).to_a.select { |number| !abundant_sum?(number) }
+    @maximum = maximum
+    @abundant_nums = AbundantNumbers.new(maximum).abundant_numbers.to_set
+    @non_abundant_sums = calculate_non_abundant_sums
   end
-
-  def abundant_numbers_to_maximum
-    AbundantNumbers.new(maximum).abundant_numbers
-  end
-
-  def abundant_sum?(number)
-    pairs = abundant_numbers_to_maximum.repeated_combination(2).with_object([]) do |pair, pairs|
-      pairs.push(pair)
-    end
-    pairs.any? { |pair| pair.sum == number }
-  end
-
-  public
-
-  attr_reader :non_abundant_sums
 
   def sum_of
     non_abundant_sums.sum
   end
+
+  private
+
+  def calculate_non_abundant_sums
+    (1..maximum).reject { |number| abundant_sum?(number) }
+  end
+
+  def abundant_sum?(number)
+    @abundant_nums.any? do |abundant|
+      next if abundant >= number
+
+      @abundant_nums.include?(number - abundant)
+    end
+  end
 end
 
-if __FILE__ == $PROGRAM_NAME
-  puts NonAbundantSums.new(28123).sum_of
-end
+puts NonAbundantSums.new(28_123).sum_of if __FILE__ == $PROGRAM_NAME
