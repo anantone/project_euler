@@ -7,11 +7,8 @@ class NthPrime
   attr_accessor :n
 
   def initialize(n)
-    if n == 0
-      raise ValueError("there is no zeroth prime") if n == 0
-    else
-      self.n = n
-    end
+    raise ArgumentError, "n must be a positive integer" if n < 1
+    self.n = n
     self.value = primes[-1]
   end
 
@@ -20,7 +17,7 @@ class NthPrime
     i = 1
     while primes.length < n
       if is_prime(i)
-        primes.append(i)
+        primes.push(i)
       end
       i += 1
     end
